@@ -12,6 +12,10 @@
 #' an optional argument that will default to FALSE if left empty.
 #'
 #' @return Either a data frame or tibble with columns and rows flipped.
+#'
+#' @examples
+#' flip(mtcars)
+#' flip(mtcars, TRUE)
 #' @export
 
 flip <- function (df, tib) {

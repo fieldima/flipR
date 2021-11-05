@@ -1,0 +1,47 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# flipr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of flipr is to flip the rows and columns of a data frame. Included is an example dataset.
+
+## Installation
+
+You can install the released version of flipr from [Github](https://github.com) with:
+
+``` r
+devtools::install_github("fieldima/flipr", ref = "0.1.0")
+```
+
+```
+## Example
+
+This is a basic example of when you would use flipr:
+
+```{r example}
+library(flipr)
+
+#Packaged with flipr is a set of simulation data that needs to be flipped.
+sim <- simulation_data
+
+#Can either return as a data frame or a tibble
+flip(sim)
+flip(sim, TRUE)
+
+```
+

@@ -23,3 +23,7 @@ the flipped data frame as a tibble.
 Function will return errors if first argument is not of type data frame. tib is
 an optional argument that will default to FALSE if left empty.
 }
+\examples{
+flip(mtcars)
+flip(mtcars, TRUE)
+}
