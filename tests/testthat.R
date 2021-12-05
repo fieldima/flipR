@@ -1,4 +1,4 @@
 library(testthat)
-library(flipr)
+library(flipR)
 
-test_check("flipr")
+test_check("flipR")

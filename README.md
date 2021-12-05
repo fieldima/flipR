@@ -1,30 +1,30 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# flipr
+# flipR
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of flipr is aid the user in inverting and flipping data frames.
+The goal of flipR is aid the user in inverting and flipping data frames.
 This includes flipping rows and columns, inverting the order of rows,
 and inverting the order of columns. Included is an example dataset.
 
 ## Installation
 
-You can install the released version of flipr from
+You can install the released version of flipR from
 [Github](https://github.com) with:
 
-    devtools::install_github("fieldima/flipr", ref = "0.2.0")
+    devtools::install_github("fieldima/flipR", ref = "0.2.0")
 
 ## Example
 
-This is a basic example of when you would use flipr:
+This is a basic example of when you would use flipR:
 
 ``` r
-library(flipr)
+library(flipR)
 
-#Packaged with flipr is a set of simulation data that needs to be flipped.
+#Packaged with flipR is a set of simulation data that needs to be flipped.
 sim <- simulation_data
 
 #To flip the rows and columns, simply use flip()
