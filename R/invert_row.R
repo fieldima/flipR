@@ -1,8 +1,8 @@
-#Roxygen tags -----------------------------------------------------------------------
-#' @title Flipping data frames.
+#Roxygen tags ----------------------------------------------------------------------
+#' @title Inverting data frame rows.
 #'
-#' @description This function flips rows and columns in a data frame and optionally returns
-#' the flipped data frame as a tibble or data table.
+#' @description This function will invert the order of rows in a data frame and optionally
+#' returns the data frame as a tibble or data table.
 #'
 #' @param df Short for data frame, the first argument should be a data frame of any type.
 #' @param out Short for output, this argument determines the form of the resulting data.
@@ -12,21 +12,24 @@
 #' an optional argument that determines if the output is a data frame, tibble, or data table.
 #' Defaults to data frame if left empty.
 #'
-#' @return Either a data frame, data table, or tibble with columns and rows flipped.
+#' @return Either a data frame, data table, or tibble with row order inverted.
+#'
+#' @importFrom tidyr %>%
+#'
+#' @export
 #'
 #' @examples
-#' flip(mtcars)
-#' flip(mtcars, "TB")
-#' @export
+#' invert_row(mtcars)
+#' invert_row(mtcars, "TB")
 
-flip <- function (df, out) {
+invert_row <- function (df, out) {
   if(! is.data.frame(df)) stop("First argument needs to be a data frame.")
   if(missing(out)) {
     out = "DF"
   }
   if(! out %in% c("DF", "DT", "TB")) stop("Second argument needs to be empty or a string indicating type of output.")
-  final <- data.frame(t(df))
-  ifelse(out == "DT", final <- data.table::as.data.table(final),
-         ifelse(out == "TB", final <- tibble::as_tibble(final), final <- final))
-  final
+  result <- df %>% dplyr::slice(nrow(df):1)
+  ifelse(out == "DT", result <- data.table::as.data.table(result),
+         ifelse(out == "TB", result <- tibble::as_tibble(result), result <- result))
+  result
 }
