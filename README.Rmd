@@ -24,9 +24,8 @@ The goal of flipr is aid the user in inverting and flipping data frames. This in
 
 You can install the released version of flipr from [Github](https://github.com) with:
 
-``` r
+``` {}
 devtools::install_github("fieldima/flipr", ref = "0.2.0")
-```
 
 ```
 ## Example
