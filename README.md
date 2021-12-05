@@ -6,8 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of flipr is to flip the rows and columns of a data frame.
-Included is an example dataset.
+The goal of flipr is aid the user in inverting and flipping data frames.
+This includes flipping rows and columns, inverting the order of rows,
+and inverting the order of columns. Included is an example dataset.
 
 ## Installation
 
@@ -15,7 +16,7 @@ You can install the released version of flipr from
 [Github](https://github.com) with:
 
 ``` r
-devtools::install_github("fieldima/flipr", ref = "0.1.0")
+devtools::install_github("fieldima/flipr", ref = "0.2.0")
 ```
 
     ## Example
@@ -29,7 +30,7 @@ devtools::install_github("fieldima/flipr", ref = "0.1.0")
     #Packaged with flipr is a set of simulation data that needs to be flipped.
     sim <- simulation_data
 
-    #Can either return as a data frame or a tibble
+    #To flip the rows and columns, simply use flip()
     flip(sim)
     #>       m.sig     c.var      s.var      s.asr     s.hgt     d.cdf
     #> 1 0.9290709 0.1758242 0.89110889 0.57742258 0.3716284 0.8831169
@@ -37,7 +38,27 @@ devtools::install_github("fieldima/flipr", ref = "0.1.0")
     #> 3 0.8791209 0.9210789 0.43356643 0.63936064 0.4695305 0.9790210
     #> 4 0.9050949 0.8991009 0.02797203 0.48551449 0.5794206 0.8911089
     #> 5 0.9330669 0.5694306 0.81318681 0.55744256 0.9470529 0.8491508
-    flip(sim, TRUE)
+
+    #This package also gives the user the ability to invert the order of rows or columns
+    invert_row(sim)
+    #>               1          2         3          4         5
+    #> d.cdf 0.8831169 0.87112887 0.9790210 0.89110889 0.8491508
+    #> s.hgt 0.3716284 0.39560440 0.4695305 0.57942058 0.9470529
+    #> s.asr 0.5774226 0.08791209 0.6393606 0.48551449 0.5574426
+    #> s.var 0.8911089 0.35564436 0.4335664 0.02797203 0.8131868
+    #> c.var 0.1758242 0.75524476 0.9210789 0.89910090 0.5694306
+    #> m.sig 0.9290709 0.94505495 0.8791209 0.90509491 0.9330669
+    invert_col(sim)
+    #>               5          4         3          2         1
+    #> m.sig 0.9330669 0.90509491 0.8791209 0.94505495 0.9290709
+    #> c.var 0.5694306 0.89910090 0.9210789 0.75524476 0.1758242
+    #> s.var 0.8131868 0.02797203 0.4335664 0.35564436 0.8911089
+    #> s.asr 0.5574426 0.48551449 0.6393606 0.08791209 0.5774226
+    #> s.hgt 0.9470529 0.57942058 0.4695305 0.39560440 0.3716284
+    #> d.cdf 0.8491508 0.89110889 0.9790210 0.87112887 0.8831169
+
+    #Finally, all functions in this package can output data in the form of data frames, tibbles, or data tables
+    flip(sim, "TB")
     #> # A tibble: 5 x 6
     #>   m.sig c.var  s.var  s.asr s.hgt d.cdf
     #>   <dbl> <dbl>  <dbl>  <dbl> <dbl> <dbl>
@@ -46,3 +67,38 @@ devtools::install_github("fieldima/flipr", ref = "0.1.0")
     #> 3 0.879 0.921 0.434  0.639  0.470 0.979
     #> 4 0.905 0.899 0.0280 0.486  0.579 0.891
     #> 5 0.933 0.569 0.813  0.557  0.947 0.849
+    flip(sim, "DT")
+    #>        m.sig     c.var      s.var      s.asr     s.hgt     d.cdf
+    #> 1: 0.9290709 0.1758242 0.89110889 0.57742258 0.3716284 0.8831169
+    #> 2: 0.9450549 0.7552448 0.35564436 0.08791209 0.3956044 0.8711289
+    #> 3: 0.8791209 0.9210789 0.43356643 0.63936064 0.4695305 0.9790210
+    #> 4: 0.9050949 0.8991009 0.02797203 0.48551449 0.5794206 0.8911089
+    #> 5: 0.9330669 0.5694306 0.81318681 0.55744256 0.9470529 0.8491508
+
+    invert_row(sim, "DF")
+    #>               1          2         3          4         5
+    #> d.cdf 0.8831169 0.87112887 0.9790210 0.89110889 0.8491508
+    #> s.hgt 0.3716284 0.39560440 0.4695305 0.57942058 0.9470529
+    #> s.asr 0.5774226 0.08791209 0.6393606 0.48551449 0.5574426
+    #> s.var 0.8911089 0.35564436 0.4335664 0.02797203 0.8131868
+    #> c.var 0.1758242 0.75524476 0.9210789 0.89910090 0.5694306
+    #> m.sig 0.9290709 0.94505495 0.8791209 0.90509491 0.9330669
+    invert_row(sim, "TB")
+    #> # A tibble: 6 x 5
+    #>     `1`    `2`   `3`    `4`   `5`
+    #>   <dbl>  <dbl> <dbl>  <dbl> <dbl>
+    #> 1 0.883 0.871  0.979 0.891  0.849
+    #> 2 0.372 0.396  0.470 0.579  0.947
+    #> 3 0.577 0.0879 0.639 0.486  0.557
+    #> 4 0.891 0.356  0.434 0.0280 0.813
+    #> 5 0.176 0.755  0.921 0.899  0.569
+    #> 6 0.929 0.945  0.879 0.905  0.933
+
+    invert_col(sim, "DT")
+    #>            5          4         3          2         1
+    #> 1: 0.9330669 0.90509491 0.8791209 0.94505495 0.9290709
+    #> 2: 0.5694306 0.89910090 0.9210789 0.75524476 0.1758242
+    #> 3: 0.8131868 0.02797203 0.4335664 0.35564436 0.8911089
+    #> 4: 0.5574426 0.48551449 0.6393606 0.08791209 0.5774226
+    #> 5: 0.9470529 0.57942058 0.4695305 0.39560440 0.3716284
+    #> 6: 0.8491508 0.89110889 0.9790210 0.87112887 0.8831169
